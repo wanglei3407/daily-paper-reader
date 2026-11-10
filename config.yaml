@@ -25,3 +25,119 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: spike-decode
+      description: 检索基于 Spike 信号的跨会话、跨天和跨被试神经解码研究，重点关注运动解码、语音解码以及神经基础模型和预训练模型。
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: neural decoding
+          keyword_cn: 神经解码
+          query: decoding behavior or movement from neural activity
+        - keyword: cross-session decoding
+          keyword_cn: 跨会话解码
+          query: neural decoders that generalize across recording sessions
+        - keyword: cross-day decoding
+          keyword_cn: 跨天解码
+          query: stable neural decoding across multiple recording days
+        - keyword: cross-subject decoding
+          keyword_cn: 跨被试解码
+          query: neural decoding models transferred across different subjects
+        - keyword: neural foundation model
+          keyword_cn: 神经基础模型
+          query: foundation models pretrained on neural recordings
+        - keyword: pretrained neural model
+          keyword_cn: 预训练神经模型
+          query: pretrained models for neural signal representation and decoding
+      intent_queries:
+        - query: >-
+            Studies on neural decoding from spike signals that generalize across sessions, days, and subjects for motor
+            and speech tasks.
+          query_cn: 基于脉冲信号的神经解码研究，能够在会话、天数和被试之间泛化，并用于运动与语音任务。
+          enabled: true
+          source: manual
+          note: ''
+        - query: >-
+            Methods for stable spike signal decoding across recording sessions and individuals in motor and speech
+            neuroprostheses.
+          query_cn: 在运动与语音神经假体中，实现跨记录会话和跨个体稳定脉冲信号解码的方法。
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-11-10T08:15:38.747Z'
+    - tag: domain-adapt
+      description: 域适应、域泛化、测试时适应等方向的内容
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: domain adaptation
+          keyword_cn: 域适应
+          query: methods for adapting models from a source domain to a target domain
+        - keyword: domain generalization
+          keyword_cn: 域泛化
+          query: approaches for learning models that generalize to unseen domains
+        - keyword: test-time adaptation
+          keyword_cn: 测试时适应
+          query: techniques for adapting models during inference on target data
+        - keyword: unsupervised domain adaptation
+          keyword_cn: 无监督域适应
+          query: domain adaptation without target domain labels
+        - keyword: cross-domain transfer
+          keyword_cn: 跨域迁移
+          query: transferring learned representations across different data domains
+        - keyword: distribution shift
+          keyword_cn: 分布偏移
+          query: model robustness under changes in data distribution
+      intent_queries:
+        - query: How to adapt a model trained on a source domain to an unseen target domain
+          query_cn: 如何将源域训练的模型适应到未见目标域
+          enabled: true
+          source: manual
+          note: ''
+        - query: Methods for learning domain invariant representations under distribution shift
+          query_cn: 分布偏移下学习域不变表示的方法
+          enabled: true
+          source: manual
+          note: ''
+        - query: Techniques for test time model adaptation without target labels
+          query_cn: 无目标标签的测试时模型适应技术
+          enabled: true
+          source: manual
+          note: ''
+        - query: Approaches for generalizing to unseen domains without target data
+          query_cn: 无目标数据情况下泛化到未见域的方法
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-11-10T08:17:15.673Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
+  biorxiv:
+    papers_table: biorxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_biorxiv_papers_exact
+    vector_rpc_exact: match_biorxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_biorxiv_papers_bm25
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
